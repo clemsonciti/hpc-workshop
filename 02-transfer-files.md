@@ -87,10 +87,10 @@ On our own machines, we run a "client" program
 Our client program passes our login credentials to this server,
 and if we are allowed to log in,
 the server runs a shell for us on the computer
-it is running on (`user0001`).
+it is running on (`user001`).
 Any commands that we enter into this shell
 are executed not by our own machines,
-but by `user0001`.
+but by `user001`.
 
 Another important service node on the Palmetto cluster
 is the *scheduler* node.
