@@ -6,8 +6,11 @@ minutes: 20
 ---
 
 > ## Learning objectives {.objectives}
+> * Distinguish between the login node and compute nodes
+> * Identify the parts of the filesystem that you can access
 > * Schedule an interactive job on the Palmetto
-> * Learn about the difference resources and limits
+> * Learn about the difference resources available and limits
+>   on resources that can be requested
 
 The Palmetto cluster consists of several hundred "compute" nodes,
 each equipped with CPUs and GPUs to do heavy computation.

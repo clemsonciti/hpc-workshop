@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Introduction to HPC on the Palmetto Cluster</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://citi.clemson.edu" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/coe-software-carpentry-banner.png" width="400" height="auto" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Introduction to HPC on the Palmetto Cluster</h1></a>
+          <h2 class="subtitle">Configuration and <code>.bashrc</code></h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Understand how to define and export variables</li>
+<li>Understand the concept of environment variables</li>
+<li>Understand where the shell looks for things</li>
+<li>Edit the <code>.bashrc</code> to configure the shell and modify the environment</li>
+</ul>
+</div>
+</section>
+<p>Let’s create a directory called <code>thesis</code> and create a file there:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span>
+$ <span class="kw">mkdir</span> thesis
+$ <span class="kw">touch</span> ~/thesis/draft.txt</code></pre></div>
+<p>To access this directory <code>thesis</code> from <em>anywhere in the filesystem</em>, we have to use the absolute path to it:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> /home/username/thesis</code></pre></div>
+<p>If we (or our programs) are going to be accessing the directory a lot, this can be inconvenient. Fortunately, the shell let’s us define <em>variables</em> that can make it easier. Let’s create a variable that refers to this directory:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ot">THESIS_DIR=</span>/home/username/thesis</code></pre></div>
+<p>Note that the equal to sign (<code>=</code>) cannot have spaces to its left or right. Now, we can simply use the variable to access the directory:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> <span class="ot">$THESIS_DIR</span>
+$ <span class="kw">ls</span></code></pre></div>
+<pre class="output"><code>draft.txt</code></pre>
+<p>Of course, variables don’t have to refer to just paths, they can refer to anything:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ot">NUM=</span>4
+$ <span class="kw">echo</span> <span class="ot">$NUM</span></code></pre></div>
+<pre class="output"><code>4</code></pre>
+<p>Let’s create a simple bash script that tries to print this value of NUM:</p>
+<pre><code># script printNum.sh
+
+echo $NUM</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">bash</span> printNum.sh</code></pre></div>
+<pre class="output"><code></code></pre>
+<p>Oops. It doesn’t look like the script knows about this variable yet. To make the variable accessible to the script, we’ll have to <em>export</em> the variable:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">export</span> <span class="ot">NUM=</span>4</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">bash</span> printNum.sh</code></pre></div>
+<pre class="output"><code>4</code></pre>
+<p>When you <em>export</em> a variable, it gets added to the shell’s <em>environment</em>. Variables in the environment are accessible to other programs. You can have a look at all the current environment variables using the <code>env</code> command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">env</span></code></pre></div>
+<pre class="output"><code>MANPATH=:
+HOSTNAME=user001
+TERM=xterm-256color
+SHELL=/bin/bash
+HISTSIZE=1000
+SSH_CLIENT=198.21.209.20 63708 22
+.
+.
+.</code></pre>
+<p>If you look in the list, you will find the <code>NUM</code> variable we exported earlier too.</p>
+<p>Environment variables are a convenient way to configure programs. For example, the bash shell uses the environment variable <code>PS1</code> to decide what the prompt should look like. Let’s change the variable to see this in action:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">export</span> <span class="ot">PS1=</span><span class="st">&#39;&gt;&gt; &#39;</span></code></pre></div>
+<pre class="output"><code>&gt;&gt;</code></pre>
+<p>The prompt is now changed to <code>&gt;&gt;</code> (to return back to your previous prompt, you have to log out and log back in).</p>
+<p>Although <code>PS1</code> is not an environment variable that you may want to change, it’s a good example of how programs use environment variables to configure their behaviour.</p>
+<h3 id="the-path-environment-variable">The PATH environment variable</h3>
+<p>An important environment variable is <code>PATH</code>. Let’s have a look at it:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">echo</span> <span class="ot">$PATH</span></code></pre></div>
+<pre class="output"><code>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin</code></pre>
+<p>The output is a list of locations, separated by the <code>:</code> character. These are locations on the filesystem that the shell will look for executables. When you type in, for example, the <code>whatsfree</code> command - it looks in each of the above locations for an executable called <code>whatsfree</code>. If it finds it in any of those locations, it executes it, and if not, it gives you an error. To confirm that the <code>whatsfree</code> executable is actually in one of the above locations, you can use the <code>which</code> command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">which</span> whatsfree</code></pre></div>
+<p>You see that <code>whatsfree</code> is in the directory <code>/usr/bin</code>, which is included in the <code>PATH</code>.</p>
+<p>Let’s create our own executable, and add it to the <code>PATH</code>. Start by creating a directory called <code>scripts</code> in your home directory.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> scripts
+$ <span class="kw">cd</span> scripts</code></pre></div>
+<p>In this directory, create a script called <code>sayHello.sh</code> with the following contents:</p>
+<pre><code>#!/bin/bash
+
+echo Hello</code></pre>
+<p>To make the script executable, you have to change the permissions on it:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">chmod</span> u+x sayHello.sh</code></pre></div>
+<p>From the same directory, you can execute the script easily by providing the path to the script:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./sayHello.sh</span></code></pre></div>
+<pre class="output"><code>Hello</code></pre>
+<p>But note that you cannot do this from anywhere else, for example from your home directory:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span>
+$ <span class="kw">./sayHello.sh</span></code></pre></div>
+<pre class="error"><code>-bash: ./sayHello.sh: No such file or directory</code></pre>
+<p>You have to provide the full path to the script:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">scipts/sayHello.sh</span></code></pre></div>
+<p>Providing the full path for each executable we run can be tedious. To make the executable accessible from anywhere, we’ll have to append the <code>scripts</code> directory to the <code>PATH</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">export</span> <span class="ot">PATH=$PATH</span>:/home/username/scripts</code></pre></div>
+<p>In the command above, we’re replacing the value of the <code>PATH</code> variable with it’s current value and then <em>appending</em> the new directory <code>/home/username/scripts</code>. Notice that we use the <code>:</code> in between, because that’s how <code>PATH</code> expects directories to be separated. If you log out and log back in to the Palmetto, however, the <code>PATH</code> variable retains its old value.</p>
+<h3 id="the-.bashrc-file">The <code>.bashrc</code> file</h3>
+<p><code>.bashrc</code> is a file in your home directory that contains a list of commands for bash to run when it starts (the <code>rc</code> stands for run commands). Let’s add the <code>scripts</code> directory to the <code>PATH</code> in the <code>.bashrc</code> file:</p>
+<pre><code>#.bashrc
+
+export PATH=$PATH:/home/username/scripts</code></pre>
+<p>Let’s now try to run <code>sayHello.sh</code></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sayHello.sh</span></code></pre></div>
+<pre class="output"><code>Hello</code></pre>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label clemson-orange" href="http://citi.clemson.edu">Center of Excellence</a>
+        <a class="label clemson-orange" href="https://github.com/clemsoncoe/hpc-workshop">Source</a>
+        <a class="label clemson-orange" href="mailto:atrikut@clemson.edu">Contact</a>
+        <a class="label clemson-orange" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
