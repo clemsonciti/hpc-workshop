@@ -28,15 +28,15 @@ to get started.
 
 ## Introduction to research computing on the Palmetto cluster
 
-1. [Introduction to the Unix shell](00-intro.html)
+1. [Introduction](00-intro.html)
 2. [Accessing the Palmetto cluster](01-accessing-palmetto.html)
-3. [Files and directories](02-filedir.html)
-4. [Creating things](03-create.html)
-5. [Pipes and filters](04-pipefilter.html)
-6. [Performing repetitive tasks](05-loop.html)
-7. [Shell scripts](06-shell-scripts.html)
-8. [Finding things](07-find.html)
-9. [File permissions](08-permissions.html)
+3. [Transfering files to and from the cluster](02-transfer-files.html)
+4. [Running interactive sessions](03-interactive.html)
+5. [Configuration and `.bashrc`](04-configuration.html)
+6. [Using modules](05-modules.html)
+7. [Submitting batch jobs](06-batch-jobs.html)
+8. [Installing software on the cluster](07-installing.html)
+9. [Parallelism](08-parallelism.html)
 
 [swc-lessons]: https://software-carpentry.org/lessons/
 [contributing]: https://github.com/shwina/hpc-novice/blob/gh-pages/CONTRIBUTING.md 
