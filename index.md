@@ -1,23 +1,15 @@
 ---
 layout: page
-title: Introduction to Linux
+title: Introduction to research computing on the Palmetto cluster
 ---
 
 > ## Learning objectives {.objectives}
 >
-> By the end of this workshop, you will be able to
-> 
-> 1. Create, manage and navigate files and directories on
->    the linux filesystem.
-> 2. Chain together linux commands to perform complex tasks
->    such as sorting and filtering.
-> 3. Write loops to perform repetitive tasks.
-> 4. Write shell-scripts to automate tasks.
+> FIXME
 
 > ## Prerequesites {.prereq}
 > 
-> No prior experience with the Linux
-> or command-line is required.
+> Learners need to be familiar with the 
 
 ## Contributing
 
@@ -34,7 +26,7 @@ and reviews of proposed changes are all equally welcome.
 Please see our page on [Contributing][contributing]
 to get started.
 
-## Introduction to Linux
+## Introduction to research computing on the Palmetto cluster
 
 1. [Introduction to the Unix shell](00-intro.html)
 2. [Accessing the Palmetto cluster](01-accessing-palmetto.html)

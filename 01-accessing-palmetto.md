@@ -1,6 +1,6 @@
 ---
 layout: lesson
-title: Introduction to Linux
+title: Introduction to research computing on the Palmetto cluster
 subtitle: First steps
 minutes: 45
 ---
@@ -66,7 +66,7 @@ $
 ## Basic structure of the cluster
 
 <img src="fig/palmetto-structure.png" \
-     alt="Structure of the Palmetto Cluster" \
+     alt="Structure of the Palmetto cluster" \
      style="height:350px">
 
 The Palmetto cluster has several "compute" nodes

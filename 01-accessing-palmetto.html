@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Introduction to Linux</title>
+    <title>Introduction to research computing on the Palmetto cluster</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -26,7 +26,7 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-                    <a href="index.html"><h1 class="title">Introduction to Linux</h1></a>
+                    <a href="index.html"><h1 class="title">Introduction to research computing on the Palmetto cluster</h1></a>
           <h2 class="subtitle">First steps</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
@@ -58,7 +58,7 @@
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ </code></pre></div>
 <h2 id="basic-structure-of-the-cluster">Basic structure of the cluster</h2>
 <p><img src="fig/palmetto-structure.png" \
-     alt="Structure of the Palmetto Cluster" \
+     alt="Structure of the Palmetto cluster" \
      style="height:350px"></p>
 <p>The Palmetto cluster has several “compute” nodes that can perform fast calculations on large amounts of data. It also has a few so-called “service” nodes, that are <em>not</em> meant for this purpose. Instead, they are meant to help users perform other actions such as transfering code and data to and from the cluster.</p>
 <p>The most important of these “service” nodes is the login node <code>user001</code>. The login node runs a “server” program that listens for remote logins. On our own machines, we run a “client” program (Secure Shell or <code>ssh</code>) that can talk to this server. Our client program passes our login credentials to this server, and if we are allowed to log in, the server runs a shell for us on the computer it is running on (<code>user0001</code>). Any commands that we enter into this shell are executed not by our own machines, but by <code>user0001</code>.</p>

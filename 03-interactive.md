@@ -1,7 +1,7 @@
 ---
 layout: lesson
-title: Introduction to HPC on the Palmetto Cluster
-subtitle: Scheduling an interactive job
+title: Introduction to research computing on the Palmetto cluster
+subtitle: Scheduling interactive jobs
 minutes: 20
 ---
 

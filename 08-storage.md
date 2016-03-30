@@ -1,7 +1,7 @@
 ---
 layout: lesson
 ---
-title: Introduction to HPC on the Palmetto Cluster
+title: Introduction to research computing on the Palmetto cluster
 subtitle: Accessing and installing tools in the cluster
 minutes: 20
 ---

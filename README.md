@@ -1,2 +1,3 @@
 # hpc-workshop
-Introduction to research computing on the Palmetto Cluster
+
+Introduction to research computing on the Palmetto cluster

@@ -1,6 +1,6 @@
 ---
 layout: lesson
-title: Introduction to HPC on the Palmetto Cluster
+title: Introduction to research computing on the Palmetto cluster
 subtitle: Submitting batch jobs
 minutes: 20
 ---
