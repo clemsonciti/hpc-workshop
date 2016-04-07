@@ -3,13 +3,15 @@ layout: page
 title: Introduction to research computing on the Palmetto cluster
 ---
 
-> ## Learning objectives {.objectives}
->
-> FIXME
-
 > ## Prerequesites {.prereq}
 > 
-> Learners need to be familiar with the 
+> Learners need to be familiar with the unix filesystem,
+> e.g., know what the "root" and "home" directories refer to,
+> and have knowledge of basic shell commands
+> to create and navigate directories
+> (`pwd`, `cd`, `ls`, `mkdir`).
+> Some experience with a terminal-based text editor
+> (such as `nano`) is also recommended.
 
 ## Contributing
 
