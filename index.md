@@ -7,7 +7,7 @@ title: Introduction to research computing on the Palmetto cluster
 >
 > FIXME
 
-> ## Prerequesites {.prereq}
+> ## Prerequisites {.prereq}
 > 
 > Learners need to be familiar with the 
 
