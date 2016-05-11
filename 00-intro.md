@@ -7,59 +7,53 @@ minutes: 5
 
 > ## Learning Objectives {.objectives}
 >
->
+> * Motivation for using the cluster.
 
 ## Nelle's Pipeline: Starting Point
 
 Nelle Nemo, a marine biologist,
-has just returned from a six-month survey of the
+has returned from a six-month survey of the
 [North Pacific Gyre](http://en.wikipedia.org/wiki/North_Pacific_Gyre),
 where she has been sampling gelatinous marine life in the
 [Great Pacific Garbage Patch](http://en.wikipedia.org/wiki/Great_Pacific_Garbage_Patch).
-She has 300 samples in all, and now needs to:
-
-1.  Run each sample through an assay machine
-    that will measure the relative abundance of 300 different proteins.
-    The machine's output for a single sample is
-    a file with one line for each protein.
-2.  Calculate statistics for each of the proteins separately
-    using a program her supervisor wrote called `goostat`.
-3.  Compare the statistics for each protein
-    with corresponding statistics for each other protein
-    using a program one of the other graduate students wrote
-    called `goodiff`.
-4.  Write up results.
-    Her supervisor would really like her to do this by the end of the month
-    so that her paper can appear in an upcoming special issue of *Aquatic Goo Letters*.
-
-It takes about half an hour for the assay machine to process each sample.
-The good news is that
-it only takes two minutes to set each one up.
-Since her lab has eight assay machines that she can use in parallel,
-this step will "only" take about two weeks.
-
-The bad news is that if she has to run `goostat` and `goodiff` by hand,
-she'll have to enter filenames and click "OK" 45,150 times
-(300 runs of `goostat`, plus 300*299/2 (half of 300 times 299) runs of `goodiff`).
-At 30 seconds each,
-that will take more than two weeks.
-Not only would she miss her paper deadline,
-the chances of her typing all of those commands right are practically zero.
-
-A small subset of Nelle's machine output files is available in
-the directory `data-shell/north-pacific-gyre/2012-07-03`.
-To compute the statistics for a given file,
-she runs the `goostats` shell script:
+She collected 10,000 samples in all, and has run each sample through an assay machine
+that measures the abundance of 300 different proteins.
+The machine's output for a single sample is
+a file with one line for each protein.
+For example, the file `NENE01812A.txt` looks like this:
 
 ~~~
-bash goostats <filename> <output_filename>
+72:0.142961371327
+265:0.452337146655
+279:0.332503761597
+25:0.557135549292
+207:0.55632965303
+107:0.96031076351
+124:0.662827329632
+193:0.814807235075
+32:1.82402616061
+99:0.7060230697
+.
+.
+.
+.
+200:1.13383446523
+264:0.552846392611
+268:0.0767025200665
 ~~~
 
-This takes about 30 seconds to run for each file,
-which means that for even this small subset of 17 files,
-Nelle will have to wait at least about 8 minutes to see all the results.
-Instead, she would like to use the Palmetto cluster to process several files
-*in parallel*.
-Because each file can be processed independently,
-if she had 17 CPU cores working on a single file each,
-her analysis would be complete in 30 seconds, rather than 8 minutes.
+Each line consists of two "fields", separated by a colon (`:`).
+The first field identifies the protein,
+and the second field is a measure of the amount of protein in the sample.
+Nelle needs to accomplish tasks such as the following:
+
+1.  For any given file, extract the amount of a given protein.
+2.  Find the maximum amount of a given protein across all files.
+3.  For each file, run a program called `stats.py` that she wrote,
+    which produces a graph, and writes some statistics
+    (these go in the directories `plots/` and `results/` respectively.)
+
+Each file takes about a minute to analyze.
+In this lesson,
+we'll see how Nelle can use the cluster to perform the above task faster
+utilizing her campus HPC resource.

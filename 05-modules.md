@@ -5,4 +5,4 @@
 > 2. Understand how loading modules affects the environment
 > 3. Load modules automatically using `.bashrc` or a different script
 
-FIXME
+
