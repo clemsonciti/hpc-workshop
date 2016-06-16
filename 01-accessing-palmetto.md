@@ -9,7 +9,6 @@ minutes: 45
 > * Learn how to log in to the Palmetto cluster.
 > * Learn the basic structure of the Palmetto cluster.
 
-
 In this workshop,
 we will use a command-line interface to interact with
 the Palmetto cluster, which runs the Linux operating system
