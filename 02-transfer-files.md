@@ -33,7 +33,7 @@ The data from Nelle's experiments is available online
 at the following location:
 
 ~~~
-https://github.com/clemsoncoe/hpc-workshop/blob/gh-pages/data-hpc.zip
+https://github.com/clemsoncoe/hpc-workshop/blob/gh-pages/data-palmetto.zip
 ~~~
 
 To download this `.zip` file to your Desktop:
@@ -56,11 +56,11 @@ machine to a remote computer is:
 $ scp /path/to/source/file user@hostname:/path/to/destination/directory
 ~~~
 
-Thus, to copy the file `data-hpc.zip` from your local machine's Desktop
+Thus, to copy the file `data-palmetto.zip` from your local machine's Desktop
 to your home directory on the Palmetto, you can do the following:
 
 ~~~{.bash}
-$ scp ~/Desktop/data-hpc.zip username@user.palmetto.clemson.edu:/home/username/
+$ scp ~/Desktop/data-palmetto.zip username@user.palmetto.clemson.edu:/home/username/
 ~~~
 
 ## Using a file transfer client (Windows)
@@ -85,29 +85,22 @@ $ ls
 ~~~
 
 ~~~{.output}
-data-hpc.zip
+data-palmetto.zip
 ~~~
 
 You can use `unzip` to extract the contents of this `.zip` file:
 
 ~~~{.bash}
-$ unzip data-hpc.zip
+$ unzip data-palmetto.zip
 ~~~
 
 ~~~{.output}
-Archive:  data-hpc.zip
-   creating: data-hpc/
-  inflating: data-hpc/.bash_profile
-   creating: data-hpc/creatures/
-  inflating: data-hpc/creatures/basilisk.dat
-  inflating: data-hpc/creatures/unicorn.dat
-   creating: data-hpc/data/
-  inflating: data-hpc/data/amino-acids.txt
-  inflating: data-hpc/data/animals.txt
-   creating: data-hpc/data/elements/
-  inflating: data-hpc/data/elements/Ac.xml
-  inflating: data-hpc/data/elements/Ag.xml
-  inflating: data-hpc/data/elements/Al.xml
+Archive:  data-palmetto.zip
+   creating: data-palmetto/
+  inflating: data-palmetto/.bash_profile
+  .
+  .
+  .
 ~~~
 
 If the data is successfully unzipped, you should see a new *directory* in your
@@ -118,5 +111,5 @@ $ ls
 ~~~
 
 ~~~{.output}
-data-hpc data-hpc.zip
+data-palmetto data-palmetto.zip
 ~~~
