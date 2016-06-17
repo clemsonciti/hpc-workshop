@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title></title>
+    <title>Introduction to research computing on the Palmetto cluster</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -26,7 +26,8 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-                    <h1 class="title"></h1>
+                    <a href="index.html"><h1 class="title">Introduction to research computing on the Palmetto cluster</h1></a>
+          <h2 class="subtitle">Running your first job</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
 <h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning objectives</h2>
@@ -35,14 +36,18 @@
 <ul>
 <li>Distinguish between the login node and compute nodes</li>
 <li>Run your first interactive job on the Palmetto cluster</li>
+<li>Learn how to load modules</li>
 </ul>
 </div>
 </section>
 <p>The Palmetto cluster consists of several hundred “compute” nodes, each equipped with CPUs and GPUs to do heavy computation. The login node <code>user001</code> is a “service” node, shared by all users, and is meant only for tasks such as managing projects (editing and moving files and directories), and submitting batch scripts (about which we will learn shortly).</p>
 <p>We’d like to start analyzing the data we’ve downloaded. So let’s get access to a compute node to begin:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">qsub</span> -I</code></pre></div>
-<p><sub>~</sub>{.output} qsub (Warning): Interactive jobs will be treated as not rerunnable qsub: waiting for job 2725837.pbs02 to start qsub: job 2725837.pbs02 ready</p>
-<p>[username@node1466 ~]$</p>
+<pre class="output"><code>qsub (Warning): Interactive jobs will be treated as not rerunnable
+qsub: waiting for job 2725837.pbs02 to start
+qsub: job 2725837.pbs02 ready
+
+[username@node1466 ~]$ </code></pre>
 <p>The prompt indicates that you are no longer running a shell on the login node (<code>user001</code>), but a compute node (<code>node1466</code> or similar). The <code>qsub</code> command is used to submit “jobs” to the cluster. A job is a request for cluster resources, like hardware (like cpu cores, memory, interconnect) and time (minutes or hours). The <code>-I</code> flag in the <code>qsub</code> command stands for “interactive”. This job is interactive because commands are entered interactively into a shell running on a compute node. (This is opposed to a <em>batch</em> job, in which the commands are included in a script—more on that later).</p>
 <p>Your home directory (and all the files inside it) are still accessible from the compute nodes:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre></div>

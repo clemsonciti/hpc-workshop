@@ -91,35 +91,42 @@ SSH_CLIENT=198.21.209.20 63708 22
 <p>The output is a list of locations, separated by the <code>:</code> character. These are locations on the filesystem that the shell will look for executables. When you type in, for example, the <code>whatsfree</code> command - it looks in each of the above locations for an executable called <code>whatsfree</code>. If it finds it in any of those locations, it executes it, and if not, it gives you an error. To confirm that the <code>whatsfree</code> executable is actually in one of the above locations, you can use the <code>which</code> command:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">which</span> whatsfree</code></pre></div>
 <p>You see that <code>whatsfree</code> is in the directory <code>/usr/bin</code>, which is included in the <code>PATH</code>.</p>
-<p>Let’s create our own executable, and add it to the <code>PATH</code>. Start by creating a directory called <code>scripts</code> in your home directory.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> scripts
-$ <span class="kw">cd</span> scripts</code></pre></div>
-<p>In this directory, create a script called <code>sayHello.sh</code> with the following contents:</p>
-<pre><code>#!/bin/bash
+<h2 id="installing-software">Installing software</h2>
+<p>As an example of installing software, we will install the <a href="https://www.gnu.org/software/hello/">Hello</a> package. We start by downloading and unpacking the software:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wget</span> http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz</code></pre></div>
+<pre class="output"><code>--2016-06-17 05:29:15--  http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz
+Resolving ftp.gnu.org... 208.118.235.20, 2001:4830:134:3::b
+Connecting to ftp.gnu.org|208.118.235.20|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 725946 (709K) [application/x-gzip]
+Saving to: &#39;hello-2.10.tar.gz&#39;
 
-echo Hello</code></pre>
-<p>To make the script executable, you have to change the permissions on it:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">chmod</span> u+x sayHello.sh</code></pre></div>
-<p>From the same directory, you can execute the script easily by providing the path to the script:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./sayHello.sh</span></code></pre></div>
-<pre class="output"><code>Hello</code></pre>
-<p>But note that you cannot do this from anywhere else, for example from your home directory:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span>
-$ <span class="kw">./sayHello.sh</span></code></pre></div>
-<pre class="error"><code>-bash: ./sayHello.sh: No such file or directory</code></pre>
-<p>You have to provide the full path to the script:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">scipts/sayHello.sh</span></code></pre></div>
-<p>Providing the full path for each executable we run can be tedious. To make the executable accessible from anywhere, we’ll have to append the <code>scripts</code> directory to the <code>PATH</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">export</span> <span class="ot">PATH=$PATH</span>:/home/username/scripts</code></pre></div>
-<p>In the command above, we’re replacing the value of the <code>PATH</code> variable with it’s current value and then <em>appending</em> the new directory <code>/home/username/scripts</code>. Notice that we use the <code>:</code> in between, because that’s how <code>PATH</code> expects directories to be separated. If you log out and log back in to the Palmetto, however, the <code>PATH</code> variable retains its old value.</p>
-<h3 id="the-.bashrc-file">The <code>.bashrc</code> file</h3>
-<p><code>.bashrc</code> is a file in your home directory that contains a list of commands for bash to run when it starts (the <code>rc</code> stands for run commands). Let’s add the <code>scripts</code> directory to the <code>PATH</code> in the <code>.bashrc</code> file:</p>
-<pre><code>#.bashrc
+hello-2.10.tar.gz                       100%[=============================================================================&gt;] 708.93K  1.11MB/s    in 0.6s
 
-export PATH=$PATH:/home/username/scripts</code></pre>
-<p>Let’s now try to run <code>sayHello.sh</code></p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sayHello.sh</span></code></pre></div>
-<pre class="output"><code>Hello</code></pre>
+2016-06-17 05:29:16 (1.11 MB/s) - &#39;hello-2.10.tar.gz&#39; saved [725946/725946]</code></pre>
+<p>Once downloaded, we’ll have to unpack it. This <code>.tar.gz</code> file is a popular format on unix systems, and needs to be unpacked using the <code>tar</code> command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">tar</span> -xvf hello-2.10.tar.gz</code></pre></div>
+<pre class="output"><code>x hello-2.10/
+x hello-2.10/COPYING
+x hello-2.10/tests/
+x hello-2.10/tests/greeting-1
+x hello-2.10/tests/traditional-1
+x hello-2.10/tests/greeting-2
+x hello-2.10/tests/hello-1
+x hello-2.10/tests/last-1
+x hello-2.10/Makefile.am
+x hello-2.10/config.in
+x hello-2.10/maint.mk
+x hello-2.10/README
+x hello-2.10/INSTALL
+x hello-2.10/NEWS
+x hello-2.10/GNUmakefile
+.
+.
+.</code></pre>
+<p>To begin installing the package, let’s <code>cd</code> into the newly created <code>hello-2.10</code> directory, and have look at the <code>INSTALL</code> file:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> hello-2.10
+$ <span class="kw">less</span> INSTALL</code></pre></div>
         </div>
       </div>
       </article>
