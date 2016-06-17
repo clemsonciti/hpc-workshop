@@ -55,9 +55,9 @@ qsub: job 2725837.pbs02 ready
 <p>Let’s navigate to the directory where our data files are:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> data-hpc/north-pacific-gyre/2012-07-03/
 $ <span class="kw">ls</span></code></pre></div>
-<pre class="output"><code>goostats        NENE01736A.txt  NENE01812A.txt  NENE01971Z.txt  NENE02018B.txt  NENE02040Z.txt  plots
-NENE01729A.txt  NENE01751A.txt  NENE01843A.txt  NENE01978A.txt  NENE02040A.txt  NENE02043A.txt  results
-NENE01729B.txt  NENE01751B.txt  NENE01843B.txt  NENE01978B.txt  NENE02040B.txt  NENE02043B.txt  stats.py</code></pre>
+<pre class="output"><code>goostats        NENE01736A.csv  NENE01812A.csv  NENE01971Z.csv  NENE02018B.csv  NENE02040Z.csv  plots
+NENE01729A.csv  NENE01751A.csv  NENE01843A.csv  NENE01978A.csv  NENE02040A.csv  NENE02043A.csv  results
+NENE01729B.csv  NENE01751B.csv  NENE01843B.csv  NENE01978B.csv  NENE02040B.csv  NENE02043B.csv  stats.py</code></pre>
 <p>The script we have to analyze our file is called <code>stats.py</code>. It’s a Python script, and needs specific Python modules to run. Try:</p>
 <p><sub><del>{.bash} $ python stats.py</del></sub>{.output}</p>
 <p>And you should see an error about missing modules.</p>
@@ -92,8 +92,8 @@ directory and the plot is put in the plots/ directory.
 optional arguments:
   -h, --help     show this help message and exit
     --fname FNAME  Input file name</code></pre>
-<p>So, to analyze the file <code>NENE01729A.txt</code> using <code>stats.py</code>, we can run the following command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">python</span> stats.py --fname NENE01729A.txt</code></pre></div>
+<p>So, to analyze the file <code>NENE01729A.csv</code> using <code>stats.py</code>, we can run the following command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">python</span> stats.py --fname NENE01729A.csv</code></pre></div>
 <p>This takes a while, but after the script is done, you should see two things:</p>
 <ol style="list-style-type: decimal">
 <li>A results file called <code>NENE01729A-results.txt</code> in the <code>results/</code> directory.</li>

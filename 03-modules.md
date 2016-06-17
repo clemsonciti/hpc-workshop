@@ -70,9 +70,9 @@ $ ls
 ~~~
 
 ~~~{.output}
-goostats        NENE01736A.txt  NENE01812A.txt  NENE01971Z.txt  NENE02018B.txt  NENE02040Z.txt  plots
-NENE01729A.txt  NENE01751A.txt  NENE01843A.txt  NENE01978A.txt  NENE02040A.txt  NENE02043A.txt  results
-NENE01729B.txt  NENE01751B.txt  NENE01843B.txt  NENE01978B.txt  NENE02040B.txt  NENE02043B.txt  stats.py
+goostats        NENE01736A.csv  NENE01812A.csv  NENE01971Z.csv  NENE02018B.csv  NENE02040Z.csv  plots
+NENE01729A.csv  NENE01751A.csv  NENE01843A.csv  NENE01978A.csv  NENE02040A.csv  NENE02043A.csv  results
+NENE01729B.csv  NENE01751B.csv  NENE01843B.csv  NENE01978B.csv  NENE02040B.csv  NENE02043B.csv  stats.py
 ~~~
 
 The script we have to analyze our file is called `stats.py`.
@@ -148,11 +148,11 @@ optional arguments:
     --fname FNAME  Input file name
 ~~~
 
-So, to analyze the file `NENE01729A.txt` using `stats.py`,
+So, to analyze the file `NENE01729A.csv` using `stats.py`,
 we can run the following command:
 
 ~~~{.bash}
-$ python stats.py --fname NENE01729A.txt
+$ python stats.py --fname NENE01729A.csv
 ~~~
 
 This takes a while, but after the script is done,
