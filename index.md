@@ -33,12 +33,11 @@ to get started.
 1. [Introduction](00-intro.html)
 2. [Accessing the Palmetto cluster](01-accessing-palmetto.html)
 3. [Transfering files to and from the cluster](02-transfer-files.html)
-4. [Using modules](03-modules.html)
-5. [Configuration and `.bashrc`](04-configuration.html)
+4. [Running your first job](03-modules.html)
+5. [Configuration, `.bashrc`, and installing software](04-configuration.html)
 6. [Running interactive sessions](05-interactive.html)
 7. [Submitting batch jobs](06-batch-jobs.html)
-8. [Installing software on the cluster](07-installing.html)
-9. [Parallelism](08-parallelism.html)
+8. [Parallelism](07-parallelism.html)
 
 [swc-lessons]: https://software-carpentry.org/lessons/
 [contributing]: https://github.com/shwina/hpc-novice/blob/gh-pages/CONTRIBUTING.md 
