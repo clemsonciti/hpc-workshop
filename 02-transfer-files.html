@@ -39,19 +39,50 @@
 </ul>
 </div>
 </section>
-<p>The data from Nelle’s experiments is available online at the following location:</p>
+<p>Let’s start by logging in to the cluster and having a look around:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">pwd</span></code></pre></div>
+<pre class="output"><code>/home/username</code></pre>
+<p>If this is your first time logging in to the cluster, this directory <code>/home/username</code> will be empty:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre></div>
+<p>Let’s populate the directory with some data. The data from Nelle’s experiments is available online at the following location:</p>
 <pre><code>https://github.com/clemsoncoe/hpc-workshop/blob/gh-pages/data-hpc.zip</code></pre>
-<p>Download this zip file to the Desktop on your own machine. The first thing we’d like to do is transfer these files into the Palmetto cluster. How we do this depends on what operating system we run on our local machines.</p>
-<h2 id="using-scp-or-a-file-transfer-client">Using <code>scp</code> or a file transfer client</h2>
+<p>To download this <code>.zip</code> file to your Desktop:</p>
+<ol style="list-style-type: decimal">
+<li>Click on the “Raw” button - this downloads the <code>.zip</code> file (presumably to your downloads directory).</li>
+<li>Move the <code>.zip</code> file to the Desktop.</li>
+</ol>
+<p>Now, we’d like to transfer this file to our home directory on the Palmetto cluster. How we do this depends on what operating system we run on our local machines.</p>
+<h2 id="using-scp-mac-os-x">Using <code>scp</code> (Mac OS X)</h2>
 <p>Mac OS X/Linux systems provide a command-line utility called <code>scp</code> that is used to transfer files to and from remote computers. The basic form of an <code>scp</code> command to transfer a file from the local machine to a remote computer is:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">scp</span> /path/to/source/file user@hostname:/path/to/destination/directory</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">scp</span> ~/Desktop/data-hpc.zip username@user.palmetto.clemson.edu:/home/username/</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">scp</span> /path/to/source/file user@hostname:/path/to/destination/directory</code></pre></div>
+<p>Thus, to copy the file <code>data-hpc.zip</code> from your local machine’s Desktop to your home directory on the Palmetto, you can do the following:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">scp</span> ~/Desktop/data-hpc.zip username@user.palmetto.clemson.edu:/home/username/</code></pre></div>
+<h2 id="using-a-file-transfer-client-windows">Using a file transfer client (Windows)</h2>
 <p>On Windows machines, a simple way to transfer files between your local machine and the Palmetto cluster is via the SSH client. Simply click on the file transfer button as shown below. This splits the screen in two halves, so that you can drag files in your local machines and copy them over to locations on the cluster:</p>
 <p><img src="fig/windows-filetransfer.png" \
      alt="Structure of the Palmetto cluster" \
      style="height:500px"></p>
-<h2 id="using-wget">Using <code>wget</code></h2>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">wget</span> https://github.com/clemsoncoe/hpc-workshop/blob/gh-pages/data-hpc.zip</code></pre></div>
+<p>Once you’ve downloaded the data, you can check the contents of your home directory:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre></div>
+<pre class="output"><code>data-hpc.zip</code></pre>
+<p>You can use <code>unzip</code> to extract the contents of this <code>.zip</code> file:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">unzip</span> data-hpc.zip</code></pre></div>
+<pre class="output"><code>Archive:  data-hpc.zip
+   creating: data-hpc/
+  inflating: data-hpc/.bash_profile
+   creating: data-hpc/creatures/
+  inflating: data-hpc/creatures/basilisk.dat
+  inflating: data-hpc/creatures/unicorn.dat
+   creating: data-hpc/data/
+  inflating: data-hpc/data/amino-acids.txt
+  inflating: data-hpc/data/animals.txt
+   creating: data-hpc/data/elements/
+  inflating: data-hpc/data/elements/Ac.xml
+  inflating: data-hpc/data/elements/Ag.xml
+  inflating: data-hpc/data/elements/Al.xml</code></pre>
+<p>If the data is successfully unzipped, you should see a new <em>directory</em> in your home directory:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre></div>
+<pre class="output"><code>data-hpc data-hpc.zip</code></pre>
         </div>
       </div>
       </article>

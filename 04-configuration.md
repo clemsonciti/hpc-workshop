@@ -176,100 +176,63 @@ which whatsfree
 You see that `whatsfree` is in the directory `/usr/bin`,
 which is included in the `PATH`.
 
-Let's create our own executable,
-and add it to the `PATH`.
-Start by creating a directory called `scripts` in your home directory.
+## Installing software
+
+As an example of installing software, we will
+install the [Hello](https://www.gnu.org/software/hello/)
+package. We start by downloading and unpacking
+the software:
 
 ~~~{.bash}
-$ mkdir scripts
-$ cd scripts
+$ wget http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz
+~~~~
+
+~~~{.output}
+--2016-06-17 05:29:15--  http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz
+Resolving ftp.gnu.org... 208.118.235.20, 2001:4830:134:3::b
+Connecting to ftp.gnu.org|208.118.235.20|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 725946 (709K) [application/x-gzip]
+Saving to: 'hello-2.10.tar.gz'
+
+hello-2.10.tar.gz                       100%[=============================================================================>] 708.93K  1.11MB/s    in 0.6s
+
+2016-06-17 05:29:16 (1.11 MB/s) - 'hello-2.10.tar.gz' saved [725946/725946]
 ~~~
 
-In this directory,
-create a script called `sayHello.sh`
-with the following contents:
-
-~~~
-#!/bin/bash
-
-echo Hello
-~~~
-
-To make the script executable,
-you have to change the permissions on it:
+Once downloaded, we'll have to unpack it. This `.tar.gz` file is a popular
+format on unix systems, and needs to be unpacked using the `tar` command:
 
 ~~~{.bash}
-$ chmod u+x sayHello.sh
-~~~
-
-From the same directory,
-you can execute the script easily
-by providing the path to the script:
-
-~~~{.bash}
-$ ./sayHello.sh
+$ tar -xvf hello-2.10.tar.gz
 ~~~
 
 ~~~{.output}
-Hello
+x hello-2.10/
+x hello-2.10/COPYING
+x hello-2.10/tests/
+x hello-2.10/tests/greeting-1
+x hello-2.10/tests/traditional-1
+x hello-2.10/tests/greeting-2
+x hello-2.10/tests/hello-1
+x hello-2.10/tests/last-1
+x hello-2.10/Makefile.am
+x hello-2.10/config.in
+x hello-2.10/maint.mk
+x hello-2.10/README
+x hello-2.10/INSTALL
+x hello-2.10/NEWS
+x hello-2.10/GNUmakefile
+.
+.
+.
 ~~~
 
-But note that you cannot do this from anywhere else,
-for example from your home directory:
+To begin installing the package, let's `cd` into the
+newly created `hello-2.10` directory,
+and have look at the `INSTALL` file:
 
 ~~~{.bash}
-$ cd
-$ ./sayHello.sh
-~~~
-
-~~~{.error}
--bash: ./sayHello.sh: No such file or directory
-~~~
-
-You have to provide the full path to the script:
-
-~~~{.bash}
-$ scipts/sayHello.sh
-~~~
-
-Providing the full path for each executable we run
-can be tedious.
-To make the executable accessible from anywhere,
-we'll have to append the `scripts` directory to the `PATH`:
-
-~~~{.bash}
-$ export PATH=$PATH:/home/username/scripts
-~~~
-
-In the command above, we're replacing the value
-of the `PATH` variable
-with it's current value and then *appending*
-the new directory `/home/username/scripts`.
-Notice that we use the `:` in between,
-because that's how `PATH` expects directories to be separated.
-If you log out and log back in to the Palmetto, however,
-the `PATH` variable retains its old value.
-
-### The `.bashrc` file
-
-`.bashrc` is a file in your home directory
-that contains a list of commands for bash to run
-when it starts (the `rc` stands for run commands).
-Let's add the `scripts` directory to the `PATH` in the `.bashrc`
-file:
-
-~~~
-#.bashrc
-
-export PATH=$PATH:/home/username/scripts
-~~~
-
-Let's now try to run `sayHello.sh`
-
-~~~{.bash}
-$ sayHello.sh
-~~~
-
-~~~{.output}
-Hello
+$ cd hello-2.10
+$ less INSTALL
 ~~~

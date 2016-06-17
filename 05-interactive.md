@@ -6,7 +6,6 @@ minutes: 20
 ---
 
 > ## Learning objectives {.objectives}
-> * Distinguish between the login node and compute nodes
 > * Identify the parts of the filesystem that you can access
 > * Schedule an interactive job on the Palmetto
 > * Learn about the difference resources available and limits
@@ -193,4 +192,3 @@ in your home and other directories.
 > Programs written for a single CPU core will only ever
 > execute on a single CPU core, regardless of how many cores are requested.
 > To exploit multiple cores, programs must be written for parallel execution.
-> We will learn how to do this later in the lesson.
