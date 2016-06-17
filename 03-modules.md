@@ -1,7 +1,15 @@
+---
+layout: lesson
+title: Introduction to research computing on the Palmetto cluster
+subtitle: Running your first job
+minutes: 20
+---
+
 > ## Learning objectives {.objectives}
 > 
 > * Distinguish between the login node and compute nodes
 > * Run your first interactive job on the Palmetto cluster
+> * Learn how to load modules
 
 The Palmetto cluster consists of several hundred "compute" nodes,
 each equipped with CPUs and GPUs to do heavy computation.
