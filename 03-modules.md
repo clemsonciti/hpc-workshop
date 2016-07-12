@@ -158,7 +158,7 @@ $ python stats.py --fname NENE01729A.csv
 This takes a while, but after the script is done,
 you should see two things:
 
-1. A results file called `NENE01729A-results.txt` in the `results/`
+1. A results file called `NENE01729A-results.out` in the `results/`
 directory.
 2. A plot called `NENE01729A.png` in the `plots/` directory.
 
