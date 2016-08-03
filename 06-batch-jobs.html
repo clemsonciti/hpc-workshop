@@ -45,13 +45,48 @@
 <p>So far, we have been using the cluster “interactively”, i.e., by typing in commands into a shell running on the login node or the compute nodes. This approach is good when setting up software, running small experiments, and debugging/testing code - but isn’t the best use of our (or the cluster’s!) time. First, if the cluster is especially busy, it might take a long time for our interactive session to begin (the scheduler must wait for the resources to free up). Second, we must be logged into the interactive session for as long as our job takes. If we log out of the session, or if connectivity to the cluster is lost, the job is killed and any running programs are immediately stopped.</p>
 <p>Instead, what we’d <em>like</em> to do is let the scheduler know where our code and data is, what resources we need to compute with them, and whenever these resources are available, to run our code and keep the results ready for us the next time we log in.</p>
 <p>To do this, we must write a special script for the scheduler called a batch submission script (or simply, a batch script). A batch script is a shell script - so it consists mostly of shell commands. In addition, it has a few lines with instructions for the scheduler - all of these lines begin with <code>#PBS</code>.</p>
-<p>Here’s a simple submit script, called <code>submit_sleep.sh</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#PBS -N sleep-example</span>
+<p>Here’s a simple submit script, called <code>sleep.sh</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#PBS -N sleeper</span>
 <span class="co">#PBS -l select=1:ncpus=1:mem=3gb,walltime=00:10:00</span>
 
 <span class="kw">echo</span> Starting job
 <span class="kw">sleep</span> 60
 <span class="kw">echo</span> Job finished</code></pre></div>
+<p>This batch script can be submitted to the scheduler (only from the login node) using the following command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">qsub</span> sleep.sh</code></pre></div>
+<pre class="output"><code>4442294.pbs02</code></pre>
+<p>When the job is submitted, we receive a job ID, which we can use to query the status of the job:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">qstat</span> 4442294</code></pre></div>
+<pre class="output"><code>Job id            Name             User              Time Use S Queue
+----------------  ---------------- ----------------  -------- - -----
+4442295.pbs02     sleeper          atrikut           00:00:00 R c1_solo</code></pre>
+<p>The status (<code>S</code>) column shows that our job is running (<code>R</code>). Jobs can have running (<code>R</code>), queued (<code>Q</code>), or error (<code>E</code>) status.</p>
+<p>Once your job is finished, you will see the following output for <code>qstat</code>:</p>
+<pre class="output"><code>qstat: 4442295.pbs02 Job has finished, use -x or -H to obtain historical job information</code></pre>
+<p>And two new files in the working directory:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre></div>
+<pre class="output"><code>sleeper.e4442295    sleeper.o4442295    sleep.sh</code></pre>
+<p>These files contain the error (<code>e</code>) and output (<code>o</code>) produced by the job. Let’s have a look at the output file:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cat</span> sleeper.o4442295</code></pre></div>
+<pre class="output"><code>Starting job
+Job finished
+
+
++------------------------------------------+
+| PALMETTO CLUSTER PBS RESOURCES REQUESTED |
++------------------------------------------+
+
+mem=1gb,ncpus=1,walltime=00:30:00
+
+
++-------------------------------------+
+| PALMETTO CLUSTER PBS RESOURCES USED |
++-------------------------------------+
+
+cpupercent=0,cput=00:00:00,mem=2880kb,ncpus=1,vmem=317320kb,walltime=00:01:01</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cat</span> sleeper.e4442295</code></pre></div>
+<pre class="output"><code></code></pre>
+<p>Example of job scripts for running a variety of types of jobs is available <a href="https://github.com/clemsonciti/palmetto-examples">here</a>.</p>
         </div>
       </div>
       </article>

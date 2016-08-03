@@ -40,14 +40,94 @@ A batch script is a shell script - so it consists mostly of shell commands.
 In addition, it has a few lines with instructions for the scheduler - all of
 these lines begin with `#PBS`.
 
-Here's a simple submit script, called `submit_sleep.sh`:
-
+Here's a simple submit script, called `sleep.sh`:
 
 ~~~{.bash}
-#PBS -N sleep-example
+#PBS -N sleeper
 #PBS -l select=1:ncpus=1:mem=3gb,walltime=00:10:00
 
 echo Starting job
 sleep 60
 echo Job finished
 ~~~
+
+This batch script can be submitted to the scheduler
+(only from the login node) using the following command:
+
+~~~{.bash}
+$ qsub sleep.sh
+~~~
+
+~~~{.output}
+4442294.pbs02
+~~~
+
+When the job is submitted, we receive a job ID,
+which we can use to query the status of the job:
+
+~~~{.bash}
+$ qstat 4442294
+~~~
+
+~~~{.output}
+Job id            Name             User              Time Use S Queue
+----------------  ---------------- ----------------  -------- - -----
+4442295.pbs02     sleeper          atrikut           00:00:00 R c1_solo
+~~~
+
+The status (`S`) column shows that our job is running (`R`).
+Jobs can have running (`R`), queued (`Q`), or error (`E`) status.
+
+Once your job is finished, you will see the following output for `qstat`:
+
+~~~{.output}
+qstat: 4442295.pbs02 Job has finished, use -x or -H to obtain historical job information
+~~~
+
+And two new files in
+the working directory:
+
+~~~{.bash}
+$ ls
+~~~
+
+~~~{.output}
+sleeper.e4442295    sleeper.o4442295    sleep.sh
+~~~
+
+These files contain the error (`e`) and output (`o`) produced by the job.
+Let's have a look at the output file:
+
+~~~{.bash}
+$ cat sleeper.o4442295
+~~~
+
+~~~{.output}
+Starting job
+Job finished
+
+
++------------------------------------------+
+| PALMETTO CLUSTER PBS RESOURCES REQUESTED |
++------------------------------------------+
+
+mem=1gb,ncpus=1,walltime=00:30:00
+
+
++-------------------------------------+
+| PALMETTO CLUSTER PBS RESOURCES USED |
++-------------------------------------+
+
+cpupercent=0,cput=00:00:00,mem=2880kb,ncpus=1,vmem=317320kb,walltime=00:01:01
+~~~
+
+~~~{.bash}
+$ cat sleeper.e4442295
+~~~
+
+~~~{.output}
+
+~~~
+
+Example of job scripts for running a variety of types of jobs
+is available [here](https://github.com/clemsonciti/palmetto-examples).
