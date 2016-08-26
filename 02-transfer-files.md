@@ -33,7 +33,7 @@ The data from Nelle's experiments is available online
 at the following location:
 
 ~~~
-https://github.com/clemsoncoe/hpc-workshop/blob/gh-pages/data-palmetto.zip
+https://github.com/clemsonciti/hpc-workshop/blob/gh-pages/data-palmetto.zip
 ~~~
 
 To download this `.zip` file to your Desktop:
